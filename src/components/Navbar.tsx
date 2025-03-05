@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <header 
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 md:px-12 py-4",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 sm:px-6 md:px-12 py-4",
         scrolled ? "bg-white/80 backdrop-blur-lg shadow-sm" : "bg-transparent"
       )}
     >
@@ -60,42 +60,42 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div 
         className={cn(
-          "fixed inset-0 z-40 bg-white md:hidden transition-all duration-300 pt-20",
-          mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          "fixed inset-x-0 top-[60px] z-40 bg-white/95 backdrop-blur-sm md:hidden transition-all duration-300 shadow-lg",
+          mobileMenuOpen ? "opacity-100 h-screen" : "opacity-0 h-0 pointer-events-none"
         )}
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-8 text-xl font-medium">
+        <div className="flex flex-col items-center pt-8 pb-12 space-y-6 text-lg font-medium">
           <a 
             href="#about" 
-            className="text-foreground hover:text-cyber-blue transition-colors"
+            className="w-full text-center py-3 px-6 text-foreground hover:bg-foreground/5 hover:text-cyber-blue transition-colors"
             onClick={() => setMobileMenuOpen(false)}
           >
             About
           </a>
           <a 
             href="#skills" 
-            className="text-foreground hover:text-cyber-blue transition-colors"
+            className="w-full text-center py-3 px-6 text-foreground hover:bg-foreground/5 hover:text-cyber-blue transition-colors"
             onClick={() => setMobileMenuOpen(false)}
           >
             Skills
           </a>
           <a 
             href="#projects" 
-            className="text-foreground hover:text-cyber-blue transition-colors"
+            className="w-full text-center py-3 px-6 text-foreground hover:bg-foreground/5 hover:text-cyber-blue transition-colors"
             onClick={() => setMobileMenuOpen(false)}
           >
             Projects
           </a>
           <a 
             href="#contact" 
-            className="text-foreground hover:text-cyber-blue transition-colors"
+            className="w-full text-center py-3 px-6 text-foreground hover:bg-foreground/5 hover:text-cyber-blue transition-colors"
             onClick={() => setMobileMenuOpen(false)}
           >
             Contact
           </a>
           <a 
             href="#contact" 
-            className="mt-4 px-8 py-3 rounded-lg bg-cyber-blue text-white font-medium hover:bg-opacity-90 transition-all"
+            className="mt-4 px-8 py-3 rounded-lg bg-cyber-blue text-white font-medium hover:bg-opacity-90 transition-all w-3/4 text-center"
             onClick={() => setMobileMenuOpen(false)}
           >
             Get in Touch

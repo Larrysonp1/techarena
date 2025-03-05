@@ -82,31 +82,31 @@ const Projects = () => {
     : projects.filter(project => project.category === filter);
   
   return (
-    <section id="projects" className="py-20 md:py-28 px-6 md:px-12 bg-gradient-to-b from-transparent to-secondary/30">
+    <section id="projects" className="py-16 md:py-28 px-4 sm:px-6 md:px-12 bg-gradient-to-b from-transparent to-secondary/30">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12 opacity-0 animate-fade-in">
+        <div className="text-center mb-10 md:mb-12 opacity-0 animate-fade-in">
           <div className="inline-flex items-center rounded-full border border-cyber-blue/20 bg-cyber-blue/5 px-4 py-1.5 mb-4">
             <span className="text-xs font-medium text-cyber-blue">Portfolio</span>
           </div>
           
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
             Featured <span className="text-cyber-blue">Security Projects</span>
           </h2>
           
-          <p className="text-foreground/70 max-w-2xl mx-auto">
+          <p className="text-foreground/70 max-w-2xl mx-auto text-sm sm:text-base">
             A selection of cybersecurity initiatives showcasing expertise across infrastructure protection,
             threat detection, and secure system design.
           </p>
         </div>
         
-        <div className="flex items-center justify-center mb-10 overflow-x-auto pb-2 opacity-0 animate-fade-in animate-delay-100">
+        <div className="flex items-center justify-center mb-8 md:mb-10 overflow-x-auto pb-2 opacity-0 animate-fade-in animate-delay-100">
           <div className="flex gap-2 md:gap-3">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setFilter(category)}
                 className={cn(
-                  "px-4 py-2 rounded-full text-sm whitespace-nowrap transition-all duration-300",
+                  "px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs sm:text-sm whitespace-nowrap transition-all duration-300",
                   filter === category
                     ? "bg-cyber-blue text-white"
                     : "bg-foreground/5 hover:bg-foreground/10"
@@ -118,7 +118,7 @@ const Projects = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredProjects.map((project, index) => (
             <div 
               key={project.id} 
@@ -130,40 +130,41 @@ const Projects = () => {
                 animationDelay: `${200 + index * 100}ms` 
               }}
             >
-              <div className="relative overflow-hidden rounded-t-lg h-48">
+              <div className="relative overflow-hidden rounded-t-xl h-40 sm:h-48">
                 <img 
                   src={project.image} 
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
+                <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
                   <div className="mb-1">
                     <span className={cn("text-xs font-medium text-white", project.textColor)}>
                       {project.category}
                     </span>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-white group-hover:text-cyber-blue transition-colors duration-300">
+                  <h3 className="text-base sm:text-xl font-bold text-white group-hover:text-cyber-blue transition-colors duration-300">
                     {project.title}
                   </h3>
                 </div>
               </div>
 
-              <div className="p-6">
-                <div className={cn("p-3 rounded-lg w-fit mb-5", `${project.color}/10`)}>
+              <div className="p-4 sm:p-6">
+                <div className={cn("p-2 sm:p-3 rounded-lg w-fit mb-4 sm:mb-5", `${project.color}/10`)}>
                   <div className={cn("text-white", project.textColor)}>
                     {project.icon}
                   </div>
                 </div>
                 
-                <p className="text-foreground/70 mb-4 text-sm">
+                <p className="text-foreground/70 mb-4 text-xs sm:text-sm">
                   {project.description}
                 </p>
                 
-                <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-foreground/10">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 sm:pt-4 border-t border-foreground/10">
                   {project.tags.map((tag, i) => (
-                    <span key={i} className="cyber-pill bg-foreground/5">
+                    <span key={i} className="cyber-pill bg-foreground/5 text-xs">
                       {tag}
                     </span>
                   ))}
@@ -173,10 +174,10 @@ const Projects = () => {
           ))}
         </div>
         
-        <div className="mt-12 text-center opacity-0 animate-fade-in animate-delay-500">
+        <div className="mt-10 md:mt-12 text-center opacity-0 animate-fade-in animate-delay-500">
           <a 
             href="#contact" 
-            className="inline-flex items-center px-6 py-3 bg-cyber-blue text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+            className="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 bg-cyber-blue text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-sm sm:text-base"
           >
             Discuss Your Security Needs
           </a>
