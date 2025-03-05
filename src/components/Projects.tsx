@@ -12,7 +12,8 @@ const projects = [
     tags: ["Zero Trust", "IAM", "Network Segmentation", "MFA"],
     icon: <Lock className="w-6 h-6" />,
     color: "bg-cyber-blue",
-    textColor: "text-cyber-blue"
+    textColor: "text-cyber-blue",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=600&auto=format&fit=crop"
   },
   {
     id: 2,
@@ -22,7 +23,8 @@ const projects = [
     tags: ["AWS", "Azure", "IaC Security", "Compliance"],
     icon: <Server className="w-6 h-6" />,
     color: "bg-cyber-purple",
-    textColor: "text-cyber-purple"
+    textColor: "text-cyber-purple",
+    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=600&auto=format&fit=crop"
   },
   {
     id: 3,
@@ -32,7 +34,8 @@ const projects = [
     tags: ["ML/AI", "Threat Intelligence", "SIEM", "Behavioral Analysis"],
     icon: <Eye className="w-6 h-6" />,
     color: "bg-cyber-green",
-    textColor: "text-cyber-green"
+    textColor: "text-cyber-green",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=600&auto=format&fit=crop"
   },
   {
     id: 4,
@@ -42,7 +45,8 @@ const projects = [
     tags: ["SCADA", "ICS", "OT Security", "Risk Assessment"],
     icon: <Shield className="w-6 h-6" />,
     color: "bg-cyber-yellow",
-    textColor: "text-cyber-yellow"
+    textColor: "text-cyber-yellow",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600&auto=format&fit=crop"
   },
   {
     id: 5,
@@ -52,7 +56,8 @@ const projects = [
     tags: ["Penetration Testing", "Social Engineering", "Red Team", "OSINT"],
     icon: <Bug className="w-6 h-6" />,
     color: "bg-cyber-red",
-    textColor: "text-cyber-red"
+    textColor: "text-cyber-red",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=600&auto=format&fit=crop"
   },
   {
     id: 6,
@@ -62,7 +67,8 @@ const projects = [
     tags: ["Data Security", "Encryption", "Access Control", "Compliance"],
     icon: <Database className="w-6 h-6" />,
     color: "bg-cyber-blue",
-    textColor: "text-cyber-blue"
+    textColor: "text-cyber-blue",
+    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=600&auto=format&fit=crop"
   }
 ];
 
@@ -124,28 +130,36 @@ const Projects = () => {
                 animationDelay: `${200 + index * 100}ms` 
               }}
             >
-              <div className="p-6 h-full flex flex-col">
+              <div className="relative overflow-hidden rounded-t-lg h-48">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="mb-1">
+                    <span className={cn("text-xs font-medium text-white", project.textColor)}>
+                      {project.category}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-white group-hover:text-cyber-blue transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                </div>
+              </div>
+
+              <div className="p-6">
                 <div className={cn("p-3 rounded-lg w-fit mb-5", `${project.color}/10`)}>
                   <div className={cn("text-white", project.textColor)}>
                     {project.icon}
                   </div>
                 </div>
                 
-                <div className="flex-1">
-                  <div className="mb-1">
-                    <span className={cn("text-xs font-medium", project.textColor)}>
-                      {project.category}
-                    </span>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-cyber-blue transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  
-                  <p className="text-foreground/70 mb-4 text-sm">
-                    {project.description}
-                  </p>
-                </div>
+                <p className="text-foreground/70 mb-4 text-sm">
+                  {project.description}
+                </p>
                 
                 <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-foreground/10">
                   {project.tags.map((tag, i) => (
