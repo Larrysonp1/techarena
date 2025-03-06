@@ -1,69 +1,80 @@
-# Welcome to your Lovable project
+# Cyber Security Portfolio
 
-## Project info
+## Project Overview
 
-**URL**: https://lovable.dev/projects/1e62b9ff-96d2-47bf-8eda-8a52425d80b1
+This is my personal cyber security portfolio website showcasing my skills, projects, and experience in the field of cybersecurity. The website is designed to highlight my expertise and provide information about my background, certifications, and professional achievements.
 
-## How can I edit this code?
+## Technologies Used
 
-There are several ways of editing your application.
+This project is built with modern web technologies:
 
-**Use Lovable**
+- Vite - Fast, modern frontend build tool
+- TypeScript - Type-safe JavaScript
+- React - UI component library
+- shadcn-ui - Beautifully designed components
+- Tailwind CSS - Utility-first CSS framework
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1e62b9ff-96d2-47bf-8eda-8a52425d80b1) and start prompting.
+## Features
 
-Changes made via Lovable will be committed automatically to this repo.
+- Responsive design that works on all devices
+- Portfolio showcasing cybersecurity projects
+- Skills and certifications section
+- Contact information
+- Blog/articles section for sharing knowledge
 
-**Use your preferred IDE**
+## Local Development
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+To run this project locally, follow these steps:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Step 1: Clone the repository
+git clone <YOUR_REPOSITORY_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Step 2: Navigate to the project directory
+cd cyber-security-portfolio
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Step 3: Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Building for Production
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+To build the project for production:
 
-**Use GitHub Codespaces**
+```sh
+npm run build
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The build artifacts will be stored in the `dist/` directory.
 
-## What technologies are used for this project?
+## Deployment
 
-This project is built with .
+This project can be deployed to any static hosting service such as:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Netlify
+- Vercel
+- GitHub Pages
+- AWS S3
+- Firebase Hosting
 
-## How can I deploy this project?
+## Project Structure
 
-Simply open [Lovable](https://lovable.dev/projects/1e62b9ff-96d2-47bf-8eda-8a52425d80b1) and click on Share -> Publish.
+```
+cyber-security-portfolio/
+├── public/          # Static assets
+│   ├── components/  # Reusable UI components
+│   ├── hooks/       # Custom React hooks
+│   ├── lib/         # Utility functions
+│   ├── pages/       # Page components
+│   ├── App.tsx      # Main application component
+│   └── main.tsx     # Application entry point
+├── index.html       # HTML entry point
+└── package.json     # Project dependencies and scripts
+```
 
-## I want to use a custom domain - is that possible?
+## License
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+This project is licensed under the MIT License - see the LICENSE file for details.

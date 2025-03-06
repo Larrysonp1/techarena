@@ -1,4 +1,3 @@
-
 import { Lock, Shield, Server, Database, Eye, Bug } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -31,7 +30,7 @@ const projects = [
     title: "Advanced Threat Detection System",
     category: "Security Operations",
     description: "Built a machine learning-powered threat detection system capable of identifying sophisticated attackers and zero-day exploits with high accuracy.",
-    tags: ["ML/AI", "Threat Intelligence", "SIEM", "Behavioral Analysis"],
+    tags: ["Machine Learning", "Threat Intelligence", "SIEM", "Behavioral Analysis"],
     icon: <Eye className="w-6 h-6" />,
     color: "bg-cyber-green",
     textColor: "text-cyber-green",
