@@ -1,79 +1,59 @@
-# Cyber Security Portfolio
+# Cybersecurity Portfolio Website
 
-## Project Overview
-
-This is my personal cyber security portfolio website showcasing my skills, projects, and experience in the field of cybersecurity. The website is designed to highlight my expertise and provide information about my background, certifications, and professional achievements.
-
-## Technologies Used
-
-This project is built with modern web technologies:
-
-- Vite - Fast, modern frontend build tool
-- TypeScript - Type-safe JavaScript
-- React - UI component library
-- shadcn-ui - Beautifully designed components
-- Tailwind CSS - Utility-first CSS framework
+A modern, responsive portfolio website for cybersecurity professionals built with React, TypeScript, and Tailwind CSS.
 
 ## Features
 
-- Responsive design that works on all devices
-- Portfolio showcasing cybersecurity projects
-- Skills and certifications section
-- Contact information
-- Blog/articles section for sharing knowledge
+- Responsive design for all devices
+- Dark/light mode toggle
+- Smooth scrolling and animations
+- Sections for showcasing skills, projects, and experience
+- Contact form with validation
+- SEO optimized
 
-## Local Development
+## Technologies Used
 
-To run this project locally, follow these steps:
+- React
+- TypeScript
+- Tailwind CSS
+- Vite
+- React Router
+- Lucide Icons
+- React Hook Form
 
-```sh
-# Step 1: Clone the repository
-git clone <YOUR_REPOSITORY_URL>
+## Getting Started
 
-# Step 2: Navigate to the project directory
-cd cyber-security-portfolio
+### Prerequisites
 
-# Step 3: Install dependencies
-npm install
+- Node.js (v14 or higher)
+- npm or yarn
 
-# Step 4: Start the development server
-npm run dev
-```
+### Installation
 
-## Building for Production
+1. Clone the repository
+   ```bash
+   git clone https://github.com/yourusername/cybersecurity-portfolio.git
+   ```
 
-To build the project for production:
+2. Install dependencies
+   ```bash
+   npm install
+   # or
+   yarn
+   ```
 
-```sh
-npm run build
-```
+3. Start the development server
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-The build artifacts will be stored in the `dist/` directory.
+4. Open [http://localhost:8080](http://localhost:8080) in your browser
 
 ## Deployment
 
-This project can be deployed to any static hosting service such as:
-
-- Netlify
-- Vercel
-- GitHub Pages
-- AWS S3
-- Firebase Hosting
-
-## Project Structure
-
-```
-cyber-security-portfolio/
-├── public/          # Static assets
-│   ├── components/  # Reusable UI components
-│   ├── hooks/       # Custom React hooks
-│   ├── lib/         # Utility functions
-│   ├── pages/       # Page components
-│   ├── App.tsx      # Main application component
-│   └── main.tsx     # Application entry point
-├── index.html       # HTML entry point
-└── package.json     # Project dependencies and scripts
-```
+This site can be easily deployed to GitHub Pages, Vercel, or Netlify.
 
 ## License
 
