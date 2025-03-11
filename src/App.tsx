@@ -13,6 +13,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
+const MessagesAdmin = lazy(() => import("./pages/admin/Messages"));
 
 // Create a loading component
 const LoadingScreen = () => (
@@ -87,6 +88,7 @@ const App = () => {
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-of-service" element={<TermsOfService />} />
                 <Route path="/cookie-policy" element={<CookiePolicy />} />
+                <Route path="/admin/messages" element={<MessagesAdmin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

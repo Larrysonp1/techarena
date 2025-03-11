@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
+import { submitContactForm } from "@/lib/supabase";
 
 const Contact = () => {
   const { toast } = useToast();
   const [isVisible, setIsVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -78,26 +80,42 @@ const Contact = () => {
     e.preventDefault();
     
     if (!validateForm()) {
+      // No need to log validation failure
       return;
     }
     
     setIsSubmitting(true);
     
     try {
-      // Simulate API call with timeout
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Submit form data to Supabase without logging user data
+      const result = await submitContactForm({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message
+      });
       
-      // In a real implementation, you would send the form data to a server
-      console.log("Form submitted:", formData);
-      
+      // Show success toast
       toast({
         title: "Message sent successfully!",
         description: "Thank you for your message. I'll get back to you soon.",
         variant: "default",
       });
       
+      // Show success state
+      setIsSubmitted(true);
+      
+      // Clear the form after successful submission
       setFormData({ name: "", email: "", subject: "", message: "" });
+      
+      // Reset to form state after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 5000);
     } catch (error) {
+      // Log error without exposing user data
+      console.error("Form submission failed");
+      
       toast({
         title: "Error sending message",
         description: "There was a problem sending your message. Please try again.",
@@ -107,6 +125,25 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
+  
+  // Show success message instead of form when submitted
+  const SuccessMessage = () => (
+    <div className="flex flex-col items-center justify-center py-10 text-center space-y-4 md:space-y-6">
+      <div className="rounded-full bg-cyber-green/10 p-3 md:p-4">
+        <CheckCircle className="h-12 w-12 md:h-16 md:w-16 text-cyber-green animate-pulse" />
+      </div>
+      <h3 className="text-xl md:text-2xl font-bold text-cyber-green">Message Sent Successfully!</h3>
+      <p className="text-sm md:text-base text-foreground/70 max-w-md">
+        Thank you for reaching out. I've received your message and will respond as soon as possible.
+      </p>
+      <button
+        onClick={() => setIsSubmitted(false)}
+        className="mt-2 md:mt-4 px-4 py-2 rounded-md bg-cyber-blue/10 text-cyber-blue hover:bg-cyber-blue/20 transition-colors"
+      >
+        Send Another Message
+      </button>
+    </div>
+  );
   
   return (
     <section id="contact" className="py-16 md:py-28 px-4 sm:px-6 md:px-12">
@@ -195,129 +232,131 @@ const Contact = () => {
             <div className="glass-panel p-6 sm:p-8">
               <h3 className="text-xl sm:text-2xl font-bold mb-5 sm:mb-6">Send a Message</h3>
               
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              {isSubmitted ? (
+                <SuccessMessage />
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Your Name</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        className={cn(
+                          "w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-cyber-blue/50 transition-all duration-300 text-sm",
+                          errors.name 
+                            ? "border-cyber-red/50 bg-cyber-red/5 dark:border-cyber-red/40 dark:bg-cyber-red/10" 
+                            : "border-foreground/10 bg-foreground/5 dark:border-foreground/20 dark:bg-foreground/10"
+                        )}
+                        placeholder="John Doe"
+                        disabled={isSubmitting}
+                      />
+                      {errors.name && (
+                        <p className="mt-1 text-xs text-cyber-red flex items-center gap-1">
+                          <AlertCircle className="w-3 h-3" />
+                          {errors.name}
+                        </p>
+                      )}
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="email" className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Your Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className={cn(
+                          "w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-cyber-blue/50 transition-all duration-300 text-sm",
+                          errors.email 
+                            ? "border-cyber-red/50 bg-cyber-red/5 dark:border-cyber-red/40 dark:bg-cyber-red/10" 
+                            : "border-foreground/10 bg-foreground/5 dark:border-foreground/20 dark:bg-foreground/10"
+                        )}
+                        placeholder="john@example.com"
+                        disabled={isSubmitting}
+                      />
+                      {errors.email && (
+                        <p className="mt-1 text-xs text-cyber-red flex items-center gap-1">
+                          <AlertCircle className="w-3 h-3" />
+                          {errors.email}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  
                   <div>
-                    <label htmlFor="name" className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Your Name</label>
+                    <label htmlFor="subject" className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Subject</label>
                     <input
                       type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
                       onChange={handleChange}
                       className={cn(
                         "w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-cyber-blue/50 transition-all duration-300 text-sm",
-                        errors.name 
+                        errors.subject 
                           ? "border-cyber-red/50 bg-cyber-red/5 dark:border-cyber-red/40 dark:bg-cyber-red/10" 
                           : "border-foreground/10 bg-foreground/5 dark:border-foreground/20 dark:bg-foreground/10"
                       )}
-                      placeholder="John Doe"
+                      placeholder="How can I help you?"
                       disabled={isSubmitting}
                     />
-                    {errors.name && (
+                    {errors.subject && (
                       <p className="mt-1 text-xs text-cyber-red flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" />
-                        {errors.name}
+                        {errors.subject}
                       </p>
                     )}
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Your Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
+                    <label htmlFor="message" className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Message</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
                       onChange={handleChange}
+                      rows={5}
                       className={cn(
                         "w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-cyber-blue/50 transition-all duration-300 text-sm",
-                        errors.email 
+                        errors.message 
                           ? "border-cyber-red/50 bg-cyber-red/5 dark:border-cyber-red/40 dark:bg-cyber-red/10" 
                           : "border-foreground/10 bg-foreground/5 dark:border-foreground/20 dark:bg-foreground/10"
                       )}
-                      placeholder="john@example.com"
+                      placeholder="Tell me about your project or inquiry..."
                       disabled={isSubmitting}
-                    />
-                    {errors.email && (
+                    ></textarea>
+                    {errors.message && (
                       <p className="mt-1 text-xs text-cyber-red flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" />
-                        {errors.email}
+                        {errors.message}
                       </p>
                     )}
                   </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="subject" className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Subject</label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className={cn(
-                      "w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-cyber-blue/50 transition-all duration-300 text-sm",
-                      errors.subject 
-                        ? "border-cyber-red/50 bg-cyber-red/5 dark:border-cyber-red/40 dark:bg-cyber-red/10" 
-                        : "border-foreground/10 bg-foreground/5 dark:border-foreground/20 dark:bg-foreground/10"
-                    )}
-                    placeholder="How can I help you?"
-                    disabled={isSubmitting}
-                  />
-                  {errors.subject && (
-                    <p className="mt-1 text-xs text-cyber-red flex items-center gap-1">
-                      <AlertCircle className="w-3 h-3" />
-                      {errors.subject}
-                    </p>
-                  )}
-                </div>
-                
-                <div>
-                  <label htmlFor="message" className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={5}
-                    className={cn(
-                      "w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border resize-none focus:outline-none focus:ring-2 focus:ring-cyber-blue/50 transition-all duration-300 text-sm",
-                      errors.message 
-                        ? "border-cyber-red/50 bg-cyber-red/5 dark:border-cyber-red/40 dark:bg-cyber-red/10" 
-                        : "border-foreground/10 bg-foreground/5 dark:border-foreground/20 dark:bg-foreground/10"
-                    )}
-                    placeholder="Tell me about your project or security needs..."
-                    disabled={isSubmitting}
-                  ></textarea>
-                  {errors.message && (
-                    <p className="mt-1 text-xs text-cyber-red flex items-center gap-1">
-                      <AlertCircle className="w-3 h-3" />
-                      {errors.message}
-                    </p>
-                  )}
-                </div>
-                
-                <div>
+                  
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 px-5 sm:px-6 py-2 sm:py-3 bg-cyber-blue text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-sm disabled:opacity-70 disabled:cursor-not-allowed hover:bg-opacity-90"
+                    className="w-full py-3 px-4 bg-gradient-to-r from-cyber-blue to-cyber-purple rounded-lg font-medium text-white flex items-center justify-center gap-2 hover:opacity-90 transition-opacity duration-300 disabled:opacity-70"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin" />
-                        Sending...
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Sending...</span>
                       </>
                     ) : (
                       <>
-                        <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                        Send Message
+                        <Send className="w-4 h-4" />
+                        <span>Send Message</span>
                       </>
                     )}
                   </button>
-                </div>
-              </form>
+                </form>
+              )}
             </div>
           </div>
         </div>
