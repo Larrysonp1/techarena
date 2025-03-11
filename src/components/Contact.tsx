@@ -3,6 +3,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader2 } from "lu
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { submitContactForm } from "@/lib/supabase";
+import logger from "@/lib/logger";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -38,8 +39,8 @@ const Contact = () => {
     };
     
     // Name validation
-    if (formData.name.trim().length < 2) {
-      newErrors.name = "Name must be at least 2 characters";
+    if (formData.name.trim().length < 5) {
+      newErrors.name = "Name must be at least 5 characters";
       isValid = false;
     }
     
@@ -114,15 +115,16 @@ const Contact = () => {
       }, 5000);
     } catch (error) {
       // Log error without exposing user data
-      console.error("Form submission failed");
+      setIsSubmitting(false);
       
+      // Show error toast
       toast({
-        title: "Error sending message",
-        description: "There was a problem sending your message. Please try again.",
+        title: "Message could not be sent",
+        description: "There was an error sending your message. Please try again later.",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
+      
+      logger.error("Form submission failed");
     }
   };
   

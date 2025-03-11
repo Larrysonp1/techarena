@@ -25,10 +25,12 @@ A modern, responsive portfolio website for cybersecurity professionals built wit
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- npm or yarn
+- Node.js (v18 or higher)
+- npm (v9 or higher)
 
 ### Installation
+
+> **Note:** This project uses npm as the preferred package manager. Using other package managers may lead to dependency conflicts.
 
 1. Clone the repository
    ```bash
@@ -42,14 +44,25 @@ A modern, responsive portfolio website for cybersecurity professionals built wit
    yarn
    ```
 
-3. Start the development server
+3. Create a `.env` file in the root directory based on `.env.example`
+   ```bash
+   cp .env.example .env
+   ```
+
+4. Update the `.env` file with your Supabase credentials:
+   ```
+   VITE_SUPABASE_URL=your_supabase_url_here
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+   ```
+
+5. Start the development server
    ```bash
    npm run dev
    # or
    yarn dev
    ```
 
-4. Open [http://localhost:8080](http://localhost:8080) in your browser
+6. Open [http://localhost:8080](http://localhost:8080) in your browser
 
 ## Deployment
 

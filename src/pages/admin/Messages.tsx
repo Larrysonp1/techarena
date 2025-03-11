@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase, ContactFormData } from '@/lib/supabase';
 import { ArrowLeft, Mail, RefreshCw, Check, Eye, Archive } from 'lucide-react';
+import logger from "@/lib/logger";
+import { toast } from "@/components/ui/use-toast";
 
 const MessagesAdmin = () => {
   const [messages, setMessages] = useState<ContactFormData[]>([]);
@@ -20,8 +22,12 @@ const MessagesAdmin = () => {
       if (error) throw error;
       setMessages(data || []);
     } catch (err) {
-      console.error('Error fetching messages:', err);
-      setError('Failed to load messages. Please try again.');
+      logger.error('Error fetching messages:', err);
+      toast({
+        title: "Error loading messages",
+        description: "Could not load messages. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }
@@ -37,14 +43,21 @@ const MessagesAdmin = () => {
       if (error) throw error;
       
       // Update local state
-      setMessages(prevMessages => 
-        prevMessages.map(msg => 
-          msg.id === id ? { ...msg, status } : msg
-        )
-      );
+      setMessages(messages.map(msg => 
+        msg.id === id ? { ...msg, status } : msg
+      ));
+      
+      toast({
+        title: "Status updated",
+        description: `Message marked as ${status}`,
+      });
     } catch (err) {
-      console.error('Error updating message:', err);
-      setError('Failed to update message status. Please try again.');
+      logger.error('Error updating message:', err);
+      toast({
+        title: "Error updating status",
+        description: "Could not update message status. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 

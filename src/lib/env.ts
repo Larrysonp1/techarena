@@ -1,3 +1,5 @@
+import logger from './logger';
+
 interface EnvVariables {
   SUPABASE_URL: string;
   SUPABASE_ANON_KEY: string;
@@ -12,6 +14,6 @@ export const env: EnvVariables = {
 // Validate required environment variables
 Object.entries(env).forEach(([key, value]) => {
   if (!value) {
-    console.warn(`Missing environment variable: ${key}`);
+    logger.warn(`Missing environment variable: ${key}`);
   }
 }); 

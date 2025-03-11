@@ -1,11 +1,12 @@
 import { createClient } from '@supabase/supabase-js';
 import { env } from './env';
+import logger from './logger';
 
 const supabaseUrl = env.SUPABASE_URL;
 const supabaseAnonKey = env.SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.error('Missing Supabase credentials. Please check your environment variables.');
+  logger.error('Missing Supabase credentials. Please check your environment variables.');
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -39,14 +40,14 @@ export const submitContactForm = async (formData: Omit<ContactFormData, 'id' | '
 
     if (error) {
       // Log error code and message but not user data
-      console.error("Supabase error:", error.code, error.message);
+      logger.error("Supabase error:", error.code, error.message);
       throw error;
     }
     
     return { success: true };
   } catch (err) {
     // Generic error logging without exposing user data
-    console.error("Error in form submission");
+    logger.error("Error in form submission");
     throw err;
   }
 };
