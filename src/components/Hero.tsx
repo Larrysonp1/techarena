@@ -1,4 +1,4 @@
-import { Shield, Lock, Server } from "lucide-react";
+import { Shield, Lock, Server, Code, Layout } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -18,16 +18,31 @@ const Hero = () => {
         
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
           <div className="w-full md:w-1/2 space-y-4 sm:space-y-6 md:space-y-8">
-            <div className={`inline-flex items-center rounded-full border border-cyber-blue/20 bg-cyber-blue/5 dark:bg-cyber-blue/10 px-4 py-1.5 mb-2 sm:mb-4 transition-all duration-700 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-4'}`}>
-              <span className="text-xs font-medium text-cyber-blue">Cybersecurity Expert</span>
+            <div className={cn(
+              "inline-flex items-center gap-2",
+              isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-4'
+            )}>
+              <span className="rounded-full border border-cyber-blue/20 bg-cyber-blue/5 dark:bg-cyber-blue/10 px-4 py-1.5 text-xs font-medium text-cyber-blue">
+                Cybersecurity Expert
+              </span>
+              <span className="rounded-full border border-cyber-purple/20 bg-cyber-purple/5 dark:bg-cyber-purple/10 px-4 py-1.5 text-xs font-medium text-cyber-purple">
+                Web Developer
+              </span>
             </div>
             
-            <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-4'}`}>
-              Securing the Digital <span className="text-cyber-blue">Future</span>
+            <h1 className={cn(
+              "text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight transition-all duration-700 delay-100",
+              isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-4'
+            )}>
+              Securing & Building the Digital <span className="text-cyber-blue">Future</span>
             </h1>
             
-            <p className={`text-base sm:text-lg text-foreground/80 max-w-xl transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-4'}`}>
-              Specialized in protecting organizations with advanced cybersecurity solutions, threat intelligence, and secure infrastructure design.
+            <p className={cn(
+              "text-base sm:text-lg text-foreground/80 max-w-xl transition-all duration-700 delay-200",
+              isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-4'
+            )}>
+              Specialized in protecting organizations with advanced cybersecurity solutions
+              and creating modern, secure web applications with cutting-edge technologies.
             </p>
             
             <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-3 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-4'}`}>
@@ -48,7 +63,10 @@ const Hero = () => {
               </a>
             </div>
             
-            <div className={`flex flex-wrap items-center gap-4 sm:gap-6 pt-6 sm:pt-8 transition-all duration-700 delay-400 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-4'}`}>
+            <div className={cn(
+              "flex flex-wrap items-center gap-4 sm:gap-6 pt-6 sm:pt-8 transition-all duration-700 delay-400",
+              isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-4'
+            )}>
               <div className="flex items-center gap-1.5">
                 <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-cyber-green" />
                 <span className="text-xs sm:text-sm font-medium">Protection</span>
@@ -58,8 +76,12 @@ const Hero = () => {
                 <span className="text-xs sm:text-sm font-medium">Security</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Server className="w-4 h-4 sm:w-5 sm:h-5 text-cyber-purple" />
-                <span className="text-xs sm:text-sm font-medium">Infrastructure</span>
+                <Code className="w-4 h-4 sm:w-5 sm:h-5 text-cyber-purple" />
+                <span className="text-xs sm:text-sm font-medium">Development</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Layout className="w-4 h-4 sm:w-5 sm:h-5 text-cyber-yellow" />
+                <span className="text-xs sm:text-sm font-medium">Design</span>
               </div>
             </div>
           </div>

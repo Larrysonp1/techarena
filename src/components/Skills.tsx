@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Shield, Bug, Terminal, Lock, Database, Server, Network, Code } from "lucide-react";
@@ -15,7 +14,6 @@ const skillCategories = [
       { name: "Security Architecture", level: 90 },
       { name: "Zero Trust Implementation", level: 85 },
       { name: "Identity & Access Management", level: 92 },
-      { name: "Endpoint Protection", level: 88 }
     ]
   },
   {
@@ -39,8 +37,7 @@ const skillCategories = [
     color: "text-cyber-green",
     bgColor: "bg-cyber-green/10",
     skills: [
-      { name: "Security Automation", level: 88 },
-      { name: "SIEM & Log Analysis", level: 90 },
+      { name: "Security Automation", level: 80 },
       { name: "Threat Hunting", level: 85 },
       { name: "Forensic Analysis", level: 82 },
       { name: "Malware Analysis", level: 78 }
@@ -55,9 +52,36 @@ const skillCategories = [
     skills: [
       { name: "Cloud Security (AWS/Azure/GCP)", level: 90 },
       { name: "Network Security", level: 92 },
-      { name: "Container Security", level: 85 },
       { name: "IoT Security", level: 80 },
       { name: "Secure DevOps", level: 88 }
+    ]
+  },
+  {
+    id: "frontend",
+    name: "Frontend",
+    icon: <Code className="w-5 h-5" />,
+    color: "text-cyber-yellow",
+    bgColor: "bg-cyber-yellow/10",
+    skills: [
+      { name: "React/Next.js", level: 95 },
+      { name: "TypeScript", level: 90 },
+      { name: "UI/UX Design", level: 85 },
+      { name: "Responsive Design", level: 92 },
+      { name: "State Management", level: 88 }
+    ]
+  },
+  {
+    id: "backend",
+    name: "Backend",
+    icon: <Database className="w-5 h-5" />,
+    color: "text-cyber-orange",
+    bgColor: "bg-cyber-orange/10",
+    skills: [
+      { name: "Node.js", level: 90 },
+      { name: "RESTful APIs", level: 92 },
+      { name: "Database Design", level: 88 },
+      { name: "Authentication/Authorization", level: 90 },
+      { name: "Server Management", level: 85 }
     ]
   }
 ];
@@ -119,13 +143,11 @@ const Skills = () => {
                 <h4 className="font-medium text-sm sm:text-base mb-3 sm:mb-4">Core Security Tools</h4>
                 
                 <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  <span className="cyber-pill bg-cyber-green/10 text-cyber-green">Kali Linux</span>
                   <span className="cyber-pill bg-cyber-blue/10 text-cyber-blue">Nessus</span>
                   <span className="cyber-pill bg-cyber-green/10 text-cyber-green">Metasploit</span>
                   <span className="cyber-pill bg-cyber-purple/10 text-cyber-purple">Wireshark</span>
                   <span className="cyber-pill bg-cyber-red/10 text-cyber-red">Burp Suite</span>
-                  <span className="cyber-pill bg-cyber-blue/10 text-cyber-blue">Splunk</span>
-                  <span className="cyber-pill bg-cyber-green/10 text-cyber-green">Kali Linux</span>
-                  <span className="cyber-pill bg-cyber-purple/10 text-cyber-purple">OSSEC</span>
                   <span className="cyber-pill bg-cyber-red/10 text-cyber-red">OWASP ZAP</span>
                 </div>
               </div>
@@ -160,9 +182,14 @@ const Skills = () => {
                                   "bg-cyber-red": category.id === "offensive",
                                   "bg-cyber-green": category.id === "technical",
                                   "bg-cyber-purple": category.id === "infrastructure",
+                                  "bg-cyber-yellow": category.id === "frontend",
                                 }
                               )}
-                              style={{ width: `${skill.level}%`, transitionDelay: `${index * 100}ms` }}
+                              style={{ 
+                                width: `${skill.level}%`, 
+                                transitionDelay: `${index * 100}ms`,
+                                backgroundColor: category.id === "backend" ? "#FF6B6B" : ""  // Using a direct color value
+                              }}
                             ></div>
                           </div>
                         </div>

@@ -79,7 +79,7 @@ const Navbar = () => {
           className="text-xl font-bold text-foreground opacity-95"
           onClick={(e) => handleNavClick(e, "hero")}
         >
-          <span className="text-cyber-blue">Secure</span>Portfolio
+          <span className="text-cyber-blue">Tech</span>arena
         </a>
         
         <div className="hidden md:flex items-center space-x-1">

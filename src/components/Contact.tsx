@@ -113,7 +113,7 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto">
         <div className={`text-center mb-10 md:mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'}`}>
           <div className="inline-flex items-center rounded-full border border-cyber-blue/20 bg-cyber-blue/5 dark:bg-cyber-blue/10 px-4 py-1.5 mb-4">
-            <span className="text-xs font-medium text-cyber-blue">Get in Touch</span>
+            <span className="text-xxs font-medium text-cyber-blue">Get in Touch</span>
           </div>
           
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
@@ -138,7 +138,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-sm sm:text-base">Email</h4>
-                    <a href="mailto:contact@secureportfolio.com" className="text-xs sm:text-sm text-foreground/70 mt-1 hover:text-cyber-blue transition-colors">contact@secureportfolio.com</a>
+                    <a href="mailto:techarena200@gmail.com" className="text-xs sm:text-sm text-foreground/70 mt-1 hover:text-cyber-blue transition-colors">techarena200@gmail.com</a>
                   </div>
                 </div>
                 
@@ -148,7 +148,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-sm sm:text-base">Phone</h4>
-                    <a href="tel:+15551234567" className="text-xs sm:text-sm text-foreground/70 mt-1 hover:text-cyber-green transition-colors">+1 (555) 123-4567</a>
+                    <a href="tel:+233592338330" className="text-xs sm:text-sm text-foreground/70 mt-1 hover:text-cyber-green transition-colors">+233 (59) 233-8330</a>
                   </div>
                 </div>
                 
@@ -158,7 +158,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-sm sm:text-base">Location</h4>
-                    <p className="text-xs sm:text-sm text-foreground/70 mt-1">San Francisco, CA, United States</p>
+                    <p className="text-xs sm:text-sm text-foreground/70 mt-1">Adenta, GA, Ghana</p>
                   </div>
                 </div>
               </div>

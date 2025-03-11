@@ -1,4 +1,4 @@
-import { Lock, Shield, Server, Database, Eye, Bug } from "lucide-react";
+import { Lock, Shield, Server, Database, Eye, Bug, Code, BarChart } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -16,13 +16,13 @@ const projects = [
   },
   {
     id: 2,
-    title: "Cloud Security Posture Management",
-    category: "Cloud Security",
-    description: "Developed an automated cloud security posture management system for multi-cloud environments, ensuring compliance and reducing misconfiguration risks.",
-    tags: ["AWS", "Azure", "IaC Security", "Compliance"],
-    icon: <Server className="w-6 h-6" />,
-    color: "bg-cyber-purple",
-    textColor: "text-cyber-purple",
+    title: "Modern E-Commerce Platform",
+    category: "Web Development",
+    description: "Built a full-stack e-commerce solution with Next.js, featuring real-time inventory, secure payments, and an intuitive admin dashboard for product management.",
+    tags: ["Next.js", "Python", "React", "Node.js", "Supabase"],
+    icon: <Code className="w-6 h-6" />,
+    color: "bg-cyber-yellow",
+    textColor: "text-cyber-yellow",
     image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=600&auto=format&fit=crop"
   },
   {
@@ -41,7 +41,7 @@ const projects = [
     title: "Critical Infrastructure Protection",
     category: "OT/ICS Security",
     description: "Secured industrial control systems for a power utility company by implementing air-gapped networks, secure remote access, and 24/7 monitoring.",
-    tags: ["SCADA", "ICS", "OT Security", "Risk Assessment"],
+    tags: [ "ICS", "OT Security", "Risk Assessment"],
     icon: <Shield className="w-6 h-6" />,
     color: "bg-cyber-yellow",
     textColor: "text-cyber-yellow",
@@ -49,13 +49,13 @@ const projects = [
   },
   {
     id: 5,
-    title: "Red Team Security Assessment",
-    category: "Offensive Security",
-    description: "Led a comprehensive red team assessment for a healthcare organization, identifying critical vulnerabilities before they could be exploited by malicious actors.",
-    tags: ["Penetration Testing", "Social Engineering", "Red Team", "OSINT"],
-    icon: <Bug className="w-6 h-6" />,
-    color: "bg-cyber-red",
-    textColor: "text-cyber-red",
+    title: "Analytics Dashboard Platform",
+    category: "Web Development",
+    description: "Developed a real-time analytics dashboard with dynamic data visualization, user authentication, and role-based access control using modern web technologies.",
+    tags: ["React", "Nextjs", "TypeScript", "Python", "REST API"],
+    icon: <BarChart className="w-6 h-6" />,
+    color: "bg-cyber-purple",
+    textColor: "text-cyber-purple",
     image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=600&auto=format&fit=crop"
   },
   {
@@ -71,7 +71,7 @@ const projects = [
   }
 ];
 
-const categories = ["All", "Infrastructure Security", "Cloud Security", "Security Operations", "OT/ICS Security", "Offensive Security", "Data Security"];
+const categories = ["All", "Infrastructure Security", "Web Development", "Security Operations", "OT/ICS Security", "Data Security"];
 
 const Projects = () => {
   const [filter, setFilter] = useState("All");
@@ -84,9 +84,6 @@ const Projects = () => {
     <section id="projects" className="py-16 md:py-28 px-4 sm:px-6 md:px-12 bg-gradient-to-b from-transparent to-secondary/30">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10 md:mb-12 opacity-0 animate-fade-in">
-          <div className="inline-flex items-center rounded-full border border-cyber-blue/20 bg-cyber-blue/5 px-4 py-1.5 mb-4">
-            <span className="text-xs font-medium text-cyber-blue">Portfolio</span>
-          </div>
           
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
             Featured <span className="text-cyber-blue">Security Projects</span>

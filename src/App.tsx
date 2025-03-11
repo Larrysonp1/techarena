@@ -10,6 +10,9 @@ import { ThemeProvider } from "@/components/theme-provider";
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
 
 // Create a loading component
 const LoadingScreen = () => (
@@ -81,6 +84,9 @@ const App = () => {
               <Routes>
                 <Route path="/" element={<Index />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-of-service" element={<TermsOfService />} />
+                <Route path="/cookie-policy" element={<CookiePolicy />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

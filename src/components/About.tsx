@@ -1,4 +1,4 @@
-import { Eye, Database, Code, Network, Shield, Award, BookOpen } from "lucide-react";
+import { Eye, Database, Code, Network, Shield, Award, BookOpen, Layout, Globe } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
@@ -12,16 +12,16 @@ const About = () => {
         <ScrollAnimation type="fade-up">
           <div className="text-center mb-10 md:mb-16">
             <div className="inline-flex items-center rounded-full border border-cyber-blue/20 bg-cyber-blue/5 dark:bg-cyber-blue/10 px-4 py-1.5 mb-4">
-              <span className="text-xs font-medium text-cyber-blue">About Me</span>
+              <span className="text-xxs font-medium text-cyber-blue">About Me</span>
             </div>
             
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-              Cybersecurity <span className="text-cyber-blue">Professional</span>
+              Cybersecurity Professional & <span className="text-cyber-blue">Web Developer</span>
             </h2>
             
             <p className="text-sm sm:text-base text-foreground/70 max-w-2xl mx-auto">
-              With over a decade of experience in information security, I specialize in protecting organizations 
-              from evolving cyber threats through innovative security solutions.
+              With extensive experience in both cybersecurity and web development, I specialize in creating 
+              secure, modern applications while protecting organizations from evolving cyber threats.
             </p>
           </div>
         </ScrollAnimation>
@@ -118,24 +118,37 @@ const About = () => {
                 <ScrollAnimation type="fade-up" delay={100}>
                   <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-blue/20">
                     <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-base sm:text-lg">Lead Security Architect</h3>
-                      <span className="text-xs bg-cyber-blue/10 text-cyber-blue px-2 py-1 rounded-full dark:bg-cyber-blue/20">2020 - Present</span>
+                      <h3 className="font-bold text-base sm:text-lg">Lead Security Specialist</h3>
+                      <span className="text-xs bg-cyber-blue/10 text-cyber-blue px-2 py-1 rounded-full dark:bg-cyber-blue/20">2024 - Present</span>
                     </div>
-                    <h4 className="text-sm text-foreground/80 mb-3">Global Financial Services Inc.</h4>
                     <p className="text-sm text-foreground/70">
-                      Leading the security architecture team in designing and implementing enterprise-wide security solutions, 
-                      including Zero Trust architecture, cloud security, and identity management systems.
+                      Providing strategic direction for security initiatives, conducting threat assessments,
+                      and implementing comprehensive security frameworks. Leading incident response and
+                      mentoring junior security team members.
                     </p>
                   </div>
                 </ScrollAnimation>
                 
                 <ScrollAnimation type="fade-up" delay={200}>
-                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-blue/20">
+                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-purple/20">
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="font-bold text-base sm:text-lg">Senior Web Developer</h3>
+                      <span className="text-xs bg-cyber-purple/10 text-cyber-purple px-2 py-1 rounded-full dark:bg-cyber-purple/20">2022 - Present</span>
+                    </div>
+                    <p className="text-sm text-foreground/70">
+                      Developing modern web applications using React, TypeScript, and Next.js. 
+                      Implementing secure coding practices and creating responsive, accessible user interfaces.
+                      Leading frontend development initiatives and mentoring junior developers.
+                    </p>
+                  </div>
+                </ScrollAnimation>
+                
+                <ScrollAnimation type="fade-up" delay={300}>
+                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-green/20">
                     <div className="flex justify-between items-start mb-2">
                       <h3 className="font-bold text-base sm:text-lg">Senior Security Engineer</h3>
-                      <span className="text-xs bg-cyber-green/10 text-cyber-green px-2 py-1 rounded-full dark:bg-cyber-green/20">2017 - 2020</span>
+                      <span className="text-xs bg-cyber-green/10 text-cyber-green px-2 py-1 rounded-full dark:bg-cyber-green/20">2022 - 2024</span>
                     </div>
-                    <h4 className="text-sm text-foreground/80 mb-3">TechSecure Solutions</h4>
                     <p className="text-sm text-foreground/70">
                       Developed and implemented security controls for critical infrastructure, conducted penetration testing, 
                       and led incident response for major security events.
@@ -143,16 +156,15 @@ const About = () => {
                   </div>
                 </ScrollAnimation>
                 
-                <ScrollAnimation type="fade-up" delay={300}>
-                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-blue/20">
+                <ScrollAnimation type="fade-up" delay={400}>
+                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-yellow/20">
                     <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-base sm:text-lg">Security Analyst</h3>
-                      <span className="text-xs bg-cyber-purple/10 text-cyber-purple px-2 py-1 rounded-full dark:bg-cyber-purple/20">2014 - 2017</span>
+                      <h3 className="font-bold text-base sm:text-lg">Full Stack Developer</h3>
+                      <span className="text-xs bg-cyber-yellow/10 text-cyber-yellow px-2 py-1 rounded-full dark:bg-cyber-yellow/20">2020 - 2022</span>
                     </div>
-                    <h4 className="text-sm text-foreground/80 mb-3">CyberDefense Corp</h4>
                     <p className="text-sm text-foreground/70">
-                      Monitored security events, performed vulnerability assessments, and contributed to the development 
-                      of security policies and procedures.
+                      Built full-stack applications using modern JavaScript frameworks, Node.js, and various databases.
+                      Implemented secure authentication systems and RESTful APIs while ensuring optimal performance.
                     </p>
                   </div>
                 </ScrollAnimation>
@@ -164,10 +176,10 @@ const About = () => {
                 <ScrollAnimation type="fade-up" delay={100}>
                   <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-blue/20">
                     <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-base sm:text-lg">Master of Science in Cybersecurity</h3>
-                      <span className="text-xs bg-cyber-blue/10 text-cyber-blue px-2 py-1 rounded-full dark:bg-cyber-blue/20">2013 - 2015</span>
+                      <h3 className="font-bold text-base sm:text-lg">Network Defence Essentials Specialist</h3>
+                      <span className="text-xs bg-cyber-blue/10 text-cyber-blue px-3 py-1 rounded-full dark:bg-cyber-blue/20">2022 - Present</span>
                     </div>
-                    <h4 className="text-sm text-foreground/80 mb-3">Stanford University</h4>
+                    <h4 className="text-sm text-foreground/80 mb-3">EC-Council</h4>
                     <p className="text-sm text-foreground/70">
                       Specialized in advanced threat detection, cryptography, and secure systems design. 
                       Thesis on "Machine Learning Applications in Intrusion Detection Systems."
@@ -176,15 +188,14 @@ const About = () => {
                 </ScrollAnimation>
                 
                 <ScrollAnimation type="fade-up" delay={200}>
-                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-blue/20">
+                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-purple/20">
                     <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-base sm:text-lg">Bachelor of Science in Computer Science</h3>
-                      <span className="text-xs bg-cyber-green/10 text-cyber-green px-2 py-1 rounded-full dark:bg-cyber-green/20">2009 - 2013</span>
+                      <h3 className="font-bold text-base sm:text-lg">Full Stack Web Development</h3>
+                      <span className="text-xs bg-cyber-purple/10 text-cyber-purple px-2 py-1 rounded-full dark:bg-cyber-purple/20">2020</span>
                     </div>
-                    <h4 className="text-sm text-foreground/80 mb-3">MIT</h4>
                     <p className="text-sm text-foreground/70">
-                      Focus on network security, software engineering, and data structures. 
-                      Graduated with honors and received the Outstanding Student in Security award.
+                      Advanced certification in modern web development technologies including React, Node.js, 
+                      and cloud services. Focus on secure coding practices and scalable architecture.
                     </p>
                   </div>
                 </ScrollAnimation>
@@ -209,7 +220,7 @@ const About = () => {
                 </ScrollAnimation>
                 
                 <ScrollAnimation type="fade-up" delay={200}>
-                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-blue/20 flex items-start gap-4">
+                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-green/20 flex items-start gap-4">
                     <div className="p-2 rounded-lg bg-cyber-green/10 dark:bg-cyber-green/20">
                       <Award className="w-5 h-5 text-cyber-green" />
                     </div>
@@ -224,7 +235,7 @@ const About = () => {
                 </ScrollAnimation>
                 
                 <ScrollAnimation type="fade-up" delay={300}>
-                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-blue/20 flex items-start gap-4">
+                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-purple/20 flex items-start gap-4">
                     <div className="p-2 rounded-lg bg-cyber-purple/10 dark:bg-cyber-purple/20">
                       <BookOpen className="w-5 h-5 text-cyber-purple" />
                     </div>
