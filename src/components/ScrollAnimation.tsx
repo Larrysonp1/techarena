@@ -1,4 +1,4 @@
-import { ReactNode, forwardRef } from 'react';
+import { ReactNode, forwardRef, ElementType } from 'react';
 import { cn } from '@/lib/utils';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
@@ -12,12 +12,12 @@ interface ScrollAnimationProps {
   threshold?: number;
   rootMargin?: string;
   triggerOnce?: boolean;
-  as?: keyof JSX.IntrinsicElements;
+  as?: ElementType;
 }
 
-export const ScrollAnimation = forwardRef<HTMLElement, ScrollAnimationProps>(
-  (
-    {
+export const ScrollAnimation = forwardRef<Element, ScrollAnimationProps>(
+  (props, forwardedRef) => {
+    const {
       children,
       type = 'fade-up',
       className,
@@ -25,10 +25,10 @@ export const ScrollAnimation = forwardRef<HTMLElement, ScrollAnimationProps>(
       threshold = 0.1,
       rootMargin = '0px',
       triggerOnce = true,
-      as: Component = 'div'
-    },
-    forwardedRef
-  ) => {
+      as: Component = 'div',
+      ...rest
+    } = props;
+    
     const { ref, isInView } = useScrollAnimation({
       threshold,
       rootMargin,
@@ -38,16 +38,21 @@ export const ScrollAnimation = forwardRef<HTMLElement, ScrollAnimationProps>(
     const animationClass = `scroll-${type}`;
     const delayStyle = delay ? { transitionDelay: `${delay}ms` } : undefined;
 
+    // Using type assertion to avoid complex union type
     return (
       <Component
-        ref={(node: any) => {
-          // Merge refs
+        {...rest}
+        // @ts-ignore - Necessary to avoid complex union type error
+        ref={(node: Element | null) => {
+          // Update the inner ref
+          (ref as any).current = node;
+          
+          // Update the forwarded ref
           if (typeof forwardedRef === 'function') {
             forwardedRef(node);
           } else if (forwardedRef) {
-            forwardedRef.current = node;
+            (forwardedRef as any).current = node;
           }
-          ref.current = node;
         }}
         className={cn(animationClass, isInView && 'in-view', className)}
         style={delayStyle}

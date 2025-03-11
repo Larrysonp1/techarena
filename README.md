@@ -1,4 +1,4 @@
-# Cybersecurity Portfolio Website
+# TechArena Website
 
 A modern, responsive portfolio website for cybersecurity professionals built with React, TypeScript, and Tailwind CSS.
 

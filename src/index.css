@@ -1,51 +1,65 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* 
+ * This comment helps the editor recognize Tailwind CSS syntax
+ * It prevents the "Unknown at rule" warnings
+ */
+@tailwind base;    /* Includes Tailwind's base/reset styles */
+@tailwind components;    /* Includes Tailwind's component classes */
+@tailwind utilities;    /* Includes Tailwind's utility classes */
 
+/* 
+ * @layer base - Defines global styles and CSS variables for theming
+ * These CSS variables define the color palette for the application
+ * Format is: hue saturation% lightness%
+ */
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222.2 84% 4.9%;
+    /* Light theme colors */
+    --background: 210 40% 98%;   /* Slightly blue-tinted background */
+    --foreground: 222.2 84% 4.9%;  /* Dark text color */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    /* Card and UI component colors */
+    --card: 0 0% 100%;  /* Pure white cards */
+    --card-foreground: 222.2 84% 4.9%;  /* Same as main foreground */
+    
+    /* More theme color variables... */
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 221.2 83.2% 53.3%;  /* Primary blue accent color */
+    --primary-foreground: 210 40% 98%;  /* Light text on primary background */
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 40% 96.1%;  /* Subtle background for muted elements */
+    --muted-foreground: 215.4 16.3% 46.9%;  /* Subtle text color */
 
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84.2% 60.2%;  /* Red for warnings/errors */
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --border: 214.3 31.8% 91.4%;  /* Light border color */
+    --input: 214.3 31.8% 91.4%;  /* Input field border color */
+    --ring: 221.2 83.2% 53.3%;  /* Focus ring color */
 
-    --radius: 0.75rem;
+    --radius: 0.75rem;  /* Default border radius */
   }
 
+  /* Dark theme overrides - activated when .dark class is applied */
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 222.2 84% 4.9%;  /* Dark background */
+    --foreground: 210 40% 98%;  /* Light text for dark mode */
 
+    /* More dark theme color overrides... */
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
 
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217.2 91.2% 59.8%;
+    --primary: 217.2 91.2% 59.8%;  /* Brighter primary color for dark mode */
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -57,58 +71,71 @@
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62.8% 30.6%;  /* Darker red for dark mode */
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
+    --border: 217.2 32.6% 17.5%;  /* Darker border for dark mode */
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 48%;
   }
 
+  /* These are Tailwind directives for applying utility classes globally */
   * {
-    @apply border-border;
+    @apply border-border;  /* Apply the border color to all elements with borders */
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    @apply bg-background text-foreground antialiased;  /* Set background, text color and font smoothing */
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";  /* Font feature settings for better typography */
   }
 
   html {
-    @apply scroll-smooth;
-    scroll-padding-top: 80px; /* Adjust for fixed header */
+    @apply scroll-smooth;  /* Enable smooth scrolling behavior */
+    scroll-padding-top: 80px; /* Adds padding when scrolling to anchors, accounting for fixed header */
   }
 }
 
+/* 
+ * @layer components - Defines reusable component classes
+ * These combine multiple utility classes into named components
+ */
 @layer components {
+  /* Glass effect panel with backdrop blur */
   .glass-panel {
     @apply bg-white/40 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg dark:bg-gray-900/40 dark:border-gray-800/30;
   }
   
+  /* Smaller glass card component */
   .glass-card {
     @apply bg-white/30 backdrop-blur-md border border-white/20 rounded-xl shadow-md dark:bg-gray-900/30 dark:border-gray-800/30;
   }
   
+  /* Pill-shaped label/badge */
   .cyber-pill {
     @apply px-2 py-0.5 sm:px-4 sm:py-1 text-xs font-medium rounded-full;
   }
   
+  /* Subtle border styling */
   .cyber-border {
     @apply border border-white/10 shadow-sm dark:border-gray-800/30;
   }
   
+  /* Tooltip that appears on hover */
   .cyber-tooltip {
     @apply absolute bg-cyber-darkBlue/90 text-white text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10;
   }
   
+  /* Hover effect for cards */
   .card-hover {
     @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
   }
   
+  /* Navigation link with underline animation */
   .nav-link {
     @apply relative px-2 sm:px-3 py-1.5 sm:py-2 text-foreground/70 hover:text-foreground transition-colors before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full;
   }
   
+  /* Section title with underline */
   .section-title {
     @apply text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 relative inline-block;
   }
@@ -118,6 +145,7 @@
     @apply absolute bottom-0 left-0 w-1/2 h-1 bg-primary rounded-full;
   }
 
+  /* Animation delay utilities */
   .animate-delay-100 {
     animation-delay: 100ms;
   }
