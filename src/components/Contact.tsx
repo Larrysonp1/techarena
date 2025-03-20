@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
@@ -10,6 +10,9 @@ const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const formRef = useRef<HTMLDivElement>(null);
+  const [formAnimated, setFormAnimated] = useState(false);
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,6 +30,27 @@ const Contact = () => {
   useEffect(() => {
     // Trigger animations after component mounts
     setIsVisible(true);
+    
+    // Set up scroll animation for form elements
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setFormAnimated(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    
+    if (formRef.current) {
+      observer.observe(formRef.current);
+    }
+    
+    return () => {
+      observer.disconnect();
+    };
   }, []);
   
   const validateForm = () => {
@@ -53,13 +77,13 @@ const Contact = () => {
     
     // Subject validation
     if (formData.subject.trim().length < 3) {
-      newErrors.subject = "Subject must be at least 3 characters";
+      newErrors.subject = "Subject is Required";
       isValid = false;
     }
     
     // Message validation
     if (formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters";
+      newErrors.message = "Message is Required";
       isValid = false;
     }
     
@@ -95,6 +119,9 @@ const Contact = () => {
         subject: formData.subject,
         message: formData.message
       });
+      
+      // Reset submitting state
+      setIsSubmitting(false);
       
       // Show success toast
       toast({
@@ -239,7 +266,12 @@ const Contact = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                    <div>
+                    <div 
+                      ref={formRef}
+                      className={`transition-all duration-500 delay-100 ${
+                        formAnimated ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
+                      }`}
+                    >
                       <label htmlFor="name" className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Your Name</label>
                       <input
                         type="text"
@@ -264,7 +296,9 @@ const Contact = () => {
                       )}
                     </div>
                     
-                    <div>
+                    <div className={`transition-all duration-500 delay-200 ${
+                      formAnimated ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
+                    }`}>
                       <label htmlFor="email" className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Your Email</label>
                       <input
                         type="email"
@@ -290,7 +324,9 @@ const Contact = () => {
                     </div>
                   </div>
                   
-                  <div>
+                  <div className={`transition-all duration-500 delay-300 ${
+                    formAnimated ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
+                  }`}>
                     <label htmlFor="subject" className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Subject</label>
                     <input
                       type="text"
@@ -315,7 +351,9 @@ const Contact = () => {
                     )}
                   </div>
                   
-                  <div>
+                  <div className={`transition-all duration-500 delay-400 ${
+                    formAnimated ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
+                  }`}>
                     <label htmlFor="message" className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Message</label>
                     <textarea
                       id="message"
@@ -342,7 +380,9 @@ const Contact = () => {
                   
                   <button
                     type="submit"
-                    className="w-full py-3 px-4 bg-gradient-to-r from-cyber-blue to-cyber-purple rounded-lg font-medium text-white flex items-center justify-center gap-2 hover:opacity-90 transition-opacity duration-300 disabled:opacity-70"
+                    className={`w-full py-3 px-4 bg-cyber-blue rounded-lg font-medium text-white flex items-center justify-center gap-2 hover:opacity-90 transition-all duration-500 delay-500 ${
+                      formAnimated ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
+                    } disabled:opacity-70`}
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (

@@ -93,15 +93,6 @@ const About = () => {
                   )}
                 </button>
                 <button 
-                  onClick={() => setActiveTab("education")}
-                  className={`px-4 py-2 text-sm font-medium transition-colors relative ${activeTab === "education" ? "text-cyber-blue" : "text-foreground/70 hover:text-foreground"}`}
-                >
-                  Education
-                  {activeTab === "education" && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-cyber-blue"></span>
-                  )}
-                </button>
-                <button 
                   onClick={() => setActiveTab("certifications")}
                   className={`px-4 py-2 text-sm font-medium transition-colors relative ${activeTab === "certifications" ? "text-cyber-blue" : "text-foreground/70 hover:text-foreground"}`}
                 >
@@ -171,37 +162,6 @@ const About = () => {
               </div>
             )}
             
-            {activeTab === "education" && (
-              <div className="space-y-6">
-                <ScrollAnimation type="fade-up" delay={100}>
-                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-blue/20">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-base sm:text-lg">Network Defence Essentials Specialist</h3>
-                      <span className="text-xs bg-cyber-blue/10 text-cyber-blue px-3 py-1 rounded-full dark:bg-cyber-blue/20">2022 - Present</span>
-                    </div>
-                    <h4 className="text-sm text-foreground/80 mb-3">EC-Council</h4>
-                    <p className="text-sm text-foreground/70">
-                      Specialized in advanced threat detection, cryptography, and secure systems design. 
-                      Thesis on "Machine Learning Applications in Intrusion Detection Systems."
-                    </p>
-                  </div>
-                </ScrollAnimation>
-                
-                <ScrollAnimation type="fade-up" delay={200}>
-                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-purple/20">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-base sm:text-lg">Full Stack Web Development</h3>
-                      <span className="text-xs bg-cyber-purple/10 text-cyber-purple px-2 py-1 rounded-full dark:bg-cyber-purple/20">2020</span>
-                    </div>
-                    <p className="text-sm text-foreground/70">
-                      Advanced certification in modern web development technologies including React, Node.js, 
-                      and cloud services. Focus on secure coding practices and scalable architecture.
-                    </p>
-                  </div>
-                </ScrollAnimation>
-              </div>
-            )}
-            
             {activeTab === "certifications" && (
               <div className="space-y-6">
                 <ScrollAnimation type="fade-up" delay={100}>
@@ -234,19 +194,6 @@ const About = () => {
                   </div>
                 </ScrollAnimation>
                 
-                <ScrollAnimation type="fade-up" delay={300}>
-                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-purple/20 flex items-start gap-4">
-                    <div className="p-2 rounded-lg bg-cyber-purple/10 dark:bg-cyber-purple/20">
-                      <BookOpen className="w-5 h-5 text-cyber-purple" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-base sm:text-lg">Certified Cloud Security Professional (CCSP)</h3>
-                      <p className="text-sm text-foreground/70 mt-1">
-                        Specialized certification in cloud security architecture, design, operations, and service orchestration.
-                      </p>
-                    </div>
-                  </div>
-                </ScrollAnimation>
               </div>
             )}
           </ScrollAnimation>

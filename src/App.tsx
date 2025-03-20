@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy, useState, useEffect } from "react";
-import { Loader2 } from "lucide-react";
+import { Shield } from "lucide-react";
 import { ThemeProvider } from "@/components/theme-provider";
 
 // Lazy load pages for better performance
@@ -19,7 +19,9 @@ const MessagesAdmin = lazy(() => import("./pages/admin/Messages"));
 const LoadingScreen = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
     <div className="flex flex-col items-center gap-4">
-      <Loader2 className="h-12 w-12 text-cyber-blue animate-spin" />
+      <div className="p-3 rounded-lg bg-cyber-blue/10">
+        <Shield className="h-12 w-12 text-cyber-blue animate-pulse" />
+      </div>
       <p className="text-sm text-muted-foreground">Loading secure environment...</p>
     </div>
   </div>

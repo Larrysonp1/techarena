@@ -10,10 +10,10 @@ const skillCategories = [
     color: "text-cyber-blue",
     bgColor: "bg-cyber-blue/10",
     skills: [
-      { name: "Threat Modeling", level: 95 },
-      { name: "Security Architecture", level: 90 },
-      { name: "Zero Trust Implementation", level: 85 },
-      { name: "Identity & Access Management", level: 92 },
+      { name: "Threat Modeling", level: 80 },
+      { name: "Security Architecture", level: 85 },
+      { name: "Zero Trust Implementation", level: 80 },
+      { name: "Identity & Access Management", level: 85 },
     ]
   },
   {
@@ -23,10 +23,10 @@ const skillCategories = [
     color: "text-cyber-red",
     bgColor: "bg-cyber-red/10",
     skills: [
-      { name: "Penetration Testing", level: 92 },
+      { name: "Penetration Testing", level: 90 },
       { name: "Vulnerability Assessment", level: 94 },
-      { name: "Red Team Operations", level: 85 },
-      { name: "Social Engineering", level: 80 },
+      { name: "Red Team Operations", level: 80 },
+      { name: "Social Engineering", level: 90 },
       { name: "Exploit Development", level: 75 }
     ]
   },
@@ -50,10 +50,10 @@ const skillCategories = [
     color: "text-cyber-purple",
     bgColor: "bg-cyber-purple/10",
     skills: [
-      { name: "Cloud Security (AWS/Azure/GCP)", level: 90 },
-      { name: "Network Security", level: 92 },
-      { name: "IoT Security", level: 80 },
-      { name: "Secure DevOps", level: 88 }
+      { name: "Cloud Security (AWS/Azure/GCP)", level: 80 },
+      { name: "Network Security", level: 85 },
+      { name: "IoT Security", level: 83 },
+      { name: "Secure DevOps", level: 75 }
     ]
   },
   {
@@ -77,11 +77,11 @@ const skillCategories = [
     color: "text-cyber-orange",
     bgColor: "bg-cyber-orange/10",
     skills: [
-      { name: "Node.js", level: 90 },
-      { name: "RESTful APIs", level: 92 },
-      { name: "Database Design", level: 88 },
-      { name: "Authentication/Authorization", level: 90 },
-      { name: "Server Management", level: 85 }
+      { name: "Node.js", level: 85 },
+      { name: "RESTful APIs", level: 82 },
+      { name: "Database Design", level: 80 },
+      { name: "Authentication/Authorization", level: 91 },
+      { name: "Server Management", level: 80 }
     ]
   }
 ];

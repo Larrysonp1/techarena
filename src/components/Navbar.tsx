@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Shield } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useScrollTo } from "@/hooks/useScrollTo";
 
@@ -75,11 +75,16 @@ const Navbar = () => {
     >
       <nav className="flex items-center justify-between max-w-7xl mx-auto">
         <a 
-          href="#hero" 
-          className="text-xl font-bold text-foreground opacity-95"
+          href="/" 
+          className="text-xl font-bold text-foreground opacity-95 flex items-center gap-3"
           onClick={(e) => handleNavClick(e, "hero")}
         >
-          <span className="text-cyber-blue">Tech</span>arena
+          <div className="p-1.5 rounded-lg bg-cyber-blue/10">
+            <Shield className="w-5 h-5 text-cyber-blue" />
+          </div>
+          <div>
+            <span className="text-cyber-blue">Tech</span><span>arena</span>
+          </div>
         </a>
         
         <div className="hidden md:flex items-center space-x-1">

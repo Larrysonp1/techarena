@@ -86,7 +86,7 @@ const Projects = () => {
         <div className="text-center mb-10 md:mb-12 opacity-0 animate-fade-in">
           
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-            Featured <span className="text-cyber-blue">Security Projects</span>
+            Featured <span className="text-cyber-blue"> Projects</span>
           </h2>
           
           <p className="text-foreground/70 max-w-2xl mx-auto text-sm sm:text-base">

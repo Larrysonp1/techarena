@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="py-12 md:py-16 px-4 sm:px-6 md:px-12 bg-gradient-to-b from-secondary/30 to-secondary/50">
+    <footer className="py-6 md:py-8 px-4 sm:px-6 md:px-12 bg-gradient-to-b from-secondary/30 to-secondary/50">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8 mb-10 sm:mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6 mb-4 sm:mb-6">
           <div className="flex items-center gap-3">
             <div className="p-1.5 sm:p-2 rounded-lg bg-cyber-blue/10">
               <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-cyber-blue" />
@@ -46,7 +46,7 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-foreground/10 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-foreground/10 pt-4 sm:pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-xs sm:text-sm text-foreground/60">
             © {new Date().getFullYear()} Techarena. All rights reserved.
           </p>
