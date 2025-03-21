@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+// Note: Brand icons like Linkedin are deprecated in lucide-react but still available
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader2, Github, Linkedin, Twitter, Instagram } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import { submitContactForm } from "@/lib/supabase";
 import logger from "@/lib/logger";
 
 const Contact = () => {
@@ -13,6 +13,7 @@ const Contact = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const [formAnimated, setFormAnimated] = useState(false);
   
+  // State to store form input values
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,6 +21,7 @@ const Contact = () => {
     message: ""
   });
   
+  // State to store validation error messages
   const [errors, setErrors] = useState({
     name: "",
     email: "",
@@ -28,6 +30,10 @@ const Contact = () => {
   });
 
   useEffect(() => {
+    // This effect handles animations when the component mounts
+    // It makes the form visible with a fade-in animation and sets up 
+    // an intersection observer to animate form fields when scrolled into view
+    
     // Trigger animations after component mounts
     setIsVisible(true);
     
@@ -53,6 +59,15 @@ const Contact = () => {
     };
   }, []);
   
+  /**
+   * Validates all form fields before submission
+   * Checks for:
+   * - Name length (min 5 chars)
+   * - Valid email format
+   * - Subject presence (min 3 chars)
+   * - Message length (min 10 chars)
+   * @returns {boolean} true if form is valid, false otherwise
+   */
   const validateForm = () => {
     let isValid = true;
     const newErrors = {
@@ -91,6 +106,11 @@ const Contact = () => {
     return isValid;
   };
   
+  /**
+   * Handles changes to form input fields
+   * Updates the formData state and clears any error for the changed field
+   * @param {React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>} e - The input change event
+   */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -101,27 +121,38 @@ const Contact = () => {
     }
   };
   
+  /**
+   * Handles form submission
+   * Submits form data to our backend API which uses Supabase and Resend
+   * @param {React.FormEvent} e - The form submission event
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!validateForm()) {
-      // No need to log validation failure
       return;
     }
     
     setIsSubmitting(true);
     
     try {
-      // Submit form data to Supabase without logging user data
-      const result = await submitContactForm({
-        name: formData.name,
-        email: formData.email,
-        subject: formData.subject,
-        message: formData.message
+      // Send form data to our contact API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
+      
+      const data = await response.json();
       
       // Reset submitting state
       setIsSubmitting(false);
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
       
       // Show success toast
       toast({
@@ -151,13 +182,16 @@ const Contact = () => {
         variant: "destructive",
       });
       
-      logger.error("Form submission failed");
+      logger.error("Form submission failed", error);
     }
   };
   
-  // Show success message instead of form when submitted
+  /**
+   * Component to display success message after form submission
+   * Shows a checkmark icon, success message, and option to send another message
+   */
   const SuccessMessage = () => (
-    <div className="flex flex-col items-center justify-center py-10 text-center space-y-4 md:space-y-6">
+    <div className="flex flex-col items-center justify-center py-10 text-center space-y-4 md:space-y-6 w-full">
       <div className="rounded-full bg-cyber-green/10 p-3 md:p-4">
         <CheckCircle className="h-12 w-12 md:h-16 md:w-16 text-cyber-green animate-pulse" />
       </div>
@@ -167,7 +201,7 @@ const Contact = () => {
       </p>
       <button
         onClick={() => setIsSubmitted(false)}
-        className="mt-2 md:mt-4 px-4 py-2 rounded-md bg-cyber-blue/10 text-cyber-blue hover:bg-cyber-blue/20 transition-colors"
+        className="mt-2 md:mt-4 px-6 py-2 rounded-md bg-cyber-blue text-white hover:bg-cyber-blue/90 transition-colors"
       >
         Send Another Message
       </button>
@@ -179,86 +213,87 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto">
         <div className={`text-center mb-10 md:mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'}`}>
           <div className="inline-flex items-center rounded-full border border-cyber-blue/20 bg-cyber-blue/5 dark:bg-cyber-blue/10 px-4 py-1.5 mb-4">
-            <span className="text-xxs font-medium text-cyber-blue">Get in Touch</span>
+            <span className="text-xs sm:text-sm font-medium tracking-wide text-cyber-blue">GET IN TOUCH</span>
           </div>
-          
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-            Ready for <span className="text-cyber-blue">Secure Solutions</span>?
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 md:mb-4">
+            Let's Connect
           </h2>
-          
-          <p className="text-sm sm:text-base text-foreground/70 max-w-2xl mx-auto">
-            Let's discuss your cybersecurity needs and how I can help protect your digital assets
-            with tailored security solutions.
+          <p className="max-w-2xl mx-auto text-muted-foreground">
+            Have a project in mind or just want to chat about cybersecurity? Fill out the form below or use one of the contact methods.
           </p>
         </div>
         
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-          <div className={`w-full lg:w-2/5 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'}`}>
-            <div className="glass-panel p-6 sm:p-8 h-full">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12">
+          <div className={`lg:col-span-2 transition-all duration-700 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'}`}>
+            <div className="glass-panel p-6 sm:p-8">
               <h3 className="text-xl sm:text-2xl font-bold mb-5 sm:mb-6">Contact Information</h3>
               
-              <div className="space-y-4 sm:space-y-6">
-                <div className="flex items-start gap-3 sm:gap-4 hover:transform hover:translate-x-1 transition-transform duration-300">
-                  <div className="mt-1 p-1.5 sm:p-2 rounded-lg bg-cyber-blue/10 dark:bg-cyber-blue/20">
-                    <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-cyber-blue" />
+              <div className="space-y-5">
+                <div className="flex items-start gap-4">
+                  <div className="rounded-full bg-cyber-blue/10 p-2.5">
+                    <Mail className="h-5 w-5 text-cyber-blue" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-sm sm:text-base">Email</h4>
-                    <a href="mailto:techarena200@gmail.com" className="text-xs sm:text-sm text-foreground/70 mt-1 hover:text-cyber-blue transition-colors">techarena200@gmail.com</a>
+                    <h4 className="font-medium">Email</h4>
+                    <a 
+                      href="mailto:techarena200@gmail.com" 
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      techarena200@gmail.com
+                    </a>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-3 sm:gap-4 hover:transform hover:translate-x-1 transition-transform duration-300">
-                  <div className="mt-1 p-1.5 sm:p-2 rounded-lg bg-cyber-green/10 dark:bg-cyber-green/20">
-                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-cyber-green" />
+                <div className="flex items-start gap-4">
+                  <div className="rounded-full bg-cyber-blue/10 p-2.5">
+                    <Phone className="h-5 w-5 text-cyber-blue" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-sm sm:text-base">Phone</h4>
-                    <a href="tel:+233592338330" className="text-xs sm:text-sm text-foreground/70 mt-1 hover:text-cyber-green transition-colors">+233 (59) 233-8330</a>
+                    <h4 className="font-medium">Phone</h4>
+                    <a 
+                      href="tel:+2348131193222" 
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      +234 813 119 3222
+                    </a>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-3 sm:gap-4 hover:transform hover:translate-x-1 transition-transform duration-300">
-                  <div className="mt-1 p-1.5 sm:p-2 rounded-lg bg-cyber-purple/10 dark:bg-cyber-purple/20">
-                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-cyber-purple" />
+                <div className="flex items-start gap-4">
+                  <div className="rounded-full bg-cyber-blue/10 p-2.5">
+                    <MapPin className="h-5 w-5 text-cyber-blue" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-sm sm:text-base">Location</h4>
-                    <p className="text-xs sm:text-sm text-foreground/70 mt-1">Adenta, GA, Ghana</p>
+                    <h4 className="font-medium">Location</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Lagos, Nigeria
+                    </p>
                   </div>
                 </div>
               </div>
               
-              <div className="mt-8 pt-8 border-t border-foreground/10 dark:border-foreground/5">
-                <h4 className="font-medium text-sm sm:text-base mb-3 sm:mb-4">Security Services</h4>
-                <ul className="space-y-2 text-xs sm:text-sm text-foreground/70">
-                  <li className="flex items-center gap-2 hover:transform hover:translate-x-1 transition-transform duration-300">
-                    <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue"></div>
-                    <span>Security Assessments & Audits</span>
-                  </li>
-                  <li className="flex items-center gap-2 hover:transform hover:translate-x-1 transition-transform duration-300">
-                    <div className="w-1.5 h-1.5 rounded-full bg-cyber-green"></div>
-                    <span>Incident Response Planning</span>
-                  </li>
-                  <li className="flex items-center gap-2 hover:transform hover:translate-x-1 transition-transform duration-300">
-                    <div className="w-1.5 h-1.5 rounded-full bg-cyber-purple"></div>
-                    <span>Security Architecture Design</span>
-                  </li>
-                  <li className="flex items-center gap-2 hover:transform hover:translate-x-1 transition-transform duration-300">
-                    <div className="w-1.5 h-1.5 rounded-full bg-cyber-red"></div>
-                    <span>Penetration Testing</span>
-                  </li>
-                  <li className="flex items-center gap-2 hover:transform hover:translate-x-1 transition-transform duration-300">
-                    <div className="w-1.5 h-1.5 rounded-full bg-cyber-yellow"></div>
-                    <span>Security Training & Workshops</span>
-                  </li>
-                </ul>
+              <div className="mt-8 pt-6 border-t border-foreground/10">
+                <h4 className="font-medium mb-3">Connect on Social Media</h4>
+                <div className="flex gap-3">
+                  <a href="https://github.com/username" target="_blank" rel="noopener noreferrer" className="rounded-full bg-foreground/10 p-2.5 hover:bg-gray-800/20 hover:scale-110 hover:-translate-y-1 transition-all duration-300">
+                    <Github className="h-5 w-5 text-gray-800 dark:text-gray-300" />
+                  </a>
+                  <a href="https://linkedin.com/in/username" target="_blank" rel="noopener noreferrer" className="rounded-full bg-foreground/10 p-2.5 hover:bg-[#0A66C2]/20 hover:scale-110 hover:-translate-y-1 transition-all duration-300">
+                    <Linkedin className="h-5 w-5 text-[#0A66C2]" />
+                  </a>
+                  <a href="https://twitter.com/username" target="_blank" rel="noopener noreferrer" className="rounded-full bg-foreground/10 p-2.5 hover:bg-[#1DA1F2]/20 hover:scale-110 hover:-translate-y-1 transition-all duration-300">
+                    <Twitter className="h-5 w-5 text-[#1DA1F2]" />
+                  </a>
+                  <a href="https://instagram.com/username" target="_blank" rel="noopener noreferrer" className="rounded-full bg-foreground/10 p-2.5 hover:bg-[#E1306C]/20 hover:scale-110 hover:-translate-y-1 transition-all duration-300">
+                    <Instagram className="h-5 w-5 text-[#E1306C]" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
           
-          <div className={`w-full lg:w-3/5 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'}`}>
-            <div className="glass-panel p-6 sm:p-8">
+          <div className={`w-full lg:col-span-3 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'}`}>
+            <div className="glass-panel p-6 sm:p-8 w-full">
               <h3 className="text-xl sm:text-2xl font-bold mb-5 sm:mb-6">Send a Message</h3>
               
               {isSubmitted ? (
@@ -299,7 +334,7 @@ const Contact = () => {
                     <div className={`transition-all duration-500 delay-200 ${
                       formAnimated ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
                     }`}>
-                      <label htmlFor="email" className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Your Email</label>
+                      <label htmlFor="email" className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">Email Address</label>
                       <input
                         type="email"
                         id="email"
@@ -312,7 +347,7 @@ const Contact = () => {
                             ? "border-cyber-red/50 bg-cyber-red/5 dark:border-cyber-red/40 dark:bg-cyber-red/10" 
                             : "border-foreground/10 bg-foreground/5 dark:border-foreground/20 dark:bg-foreground/10"
                         )}
-                        placeholder="john@example.com"
+                        placeholder="johndoe@example.com"
                         disabled={isSubmitting}
                       />
                       {errors.email && (
@@ -378,25 +413,27 @@ const Contact = () => {
                     )}
                   </div>
                   
-                  <button
-                    type="submit"
-                    className={`w-full py-3 px-4 bg-cyber-blue rounded-lg font-medium text-white flex items-center justify-center gap-2 hover:opacity-90 transition-all duration-500 delay-500 ${
-                      formAnimated ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
-                    } disabled:opacity-70`}
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Sending...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4" />
-                        <span>Send Message</span>
-                      </>
-                    )}
-                  </button>
+                  <div className={`transition-all duration-500 delay-500 ${
+                    formAnimated ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
+                  }`}>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-cyber-blue text-white rounded-lg hover:bg-cyber-blue/90 transition-colors disabled:opacity-70 disabled:cursor-not-allowed text-sm font-medium"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-4 w-4" />
+                          Send Message
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </form>
               )}
             </div>

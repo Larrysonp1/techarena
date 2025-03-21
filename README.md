@@ -49,11 +49,11 @@ A modern, responsive portfolio website for cybersecurity professionals built wit
    cp .env.example .env
    ```
 
-4. Update the `.env` file with your Supabase credentials:
-   ```
-   VITE_SUPABASE_URL=your_supabase_url_here
-   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
-   ```
+4. Update the `.env` file with your email service credentials:
+
+```
+# Add your email service API key when implementing
+```
 
 5. Start the development server
    ```bash

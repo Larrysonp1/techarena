@@ -2,7 +2,7 @@ import { ReactNode, forwardRef, ElementType } from 'react';
 import { cn } from '@/lib/utils';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
-type AnimationType = 'fade-in' | 'fade-up' | 'fade-right' | 'fade-left';
+type AnimationType = 'fade-in' | 'fade-up' | 'fade-right' | 'fade-left' | 'scale-in' | 'tilt-in';
 
 interface ScrollAnimationProps {
   children: ReactNode;

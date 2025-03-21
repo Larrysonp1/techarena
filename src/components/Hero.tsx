@@ -95,7 +95,22 @@ const Hero = () => {
                   <div className="absolute inset-4 border-2 border-dashed border-white/30 dark:border-white/20 rounded-full -rotate-12 animate-spin" style={{ animationDuration: '20s' }}></div>
                   <div className="absolute inset-10 border border-cyber-green/40 dark:border-cyber-green/30 rounded-full rotate-90 animate-spin" style={{ animationDuration: '25s' }}></div>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <Shield className="w-12 h-12 sm:w-16 sm:h-16 text-cyber-blue" />
+                    <div className="relative group cursor-pointer">
+                      <div className="absolute inset-0 rounded-full bg-cyber-blue/20 animate-ping opacity-75 group-hover:bg-cyber-blue/30"></div>
+                      <div className="absolute inset-0.5 rounded-full bg-cyber-blue/10 animate-pulse group-hover:bg-cyber-blue/20" style={{ animationDuration: '3s' }}></div>
+                      
+                      <Shield className="w-12 h-12 sm:w-16 sm:h-16 text-cyber-blue relative z-10 animate-bounce-slow hover:scale-110 transition-transform duration-300" />
+                      
+                      {/* Uncomment to use your custom image
+                      <img 
+                        src="/your-image.png" 
+                        alt="Your custom image" 
+                        className="w-12 h-12 sm:w-16 sm:h-16 relative z-10 animate-bounce-slow hover:scale-110 transition-transform duration-300 rounded-full object-cover"
+                      />
+                      */}
+                      
+                      <div className="absolute inset-0 rounded-full bg-cyber-blue/10 blur-xl opacity-75 scale-125 animate-pulse-slow"></div>
+                    </div>
                   </div>
                 </div>
               </div>

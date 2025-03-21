@@ -106,11 +106,11 @@ const About = () => {
             
             {activeTab === "experience" && (
               <div className="space-y-6">
-                <ScrollAnimation type="fade-up" delay={100}>
-                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-blue/20">
+                <ScrollAnimation type="scale-in" delay={100}>
+                  <div className="glass-card glass-card-hover p-5 sm:p-6 transition-all duration-300 hover:shadow-lg hover:border-cyber-blue/40 hover:-translate-y-1 transform-gpu will-change-transform group">
                     <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-base sm:text-lg">Lead Security Specialist</h3>
-                      <span className="text-xs bg-cyber-blue/10 text-cyber-blue px-2 py-1 rounded-full dark:bg-cyber-blue/20">2024 - Present</span>
+                      <h3 className="font-bold text-base sm:text-lg group-hover:text-cyber-blue transition-colors">Lead Security Specialist</h3>
+                      <span className="text-xs bg-cyber-blue/10 text-cyber-blue px-2 py-1 rounded-full dark:bg-cyber-blue/20 group-hover:bg-cyber-blue/30">2024 - Present</span>
                     </div>
                     <p className="text-sm text-foreground/70">
                       Providing strategic direction for security initiatives, conducting threat assessments,
@@ -120,11 +120,11 @@ const About = () => {
                   </div>
                 </ScrollAnimation>
                 
-                <ScrollAnimation type="fade-up" delay={200}>
-                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-purple/20">
+                <ScrollAnimation type="tilt-in" delay={200}>
+                  <div className="glass-card glass-card-hover p-5 sm:p-6 transition-all duration-300 hover:shadow-lg hover:border-cyber-purple/40 hover:-translate-y-1 transform-gpu will-change-transform group">
                     <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-base sm:text-lg">Senior Web Developer</h3>
-                      <span className="text-xs bg-cyber-purple/10 text-cyber-purple px-2 py-1 rounded-full dark:bg-cyber-purple/20">2022 - Present</span>
+                      <h3 className="font-bold text-base sm:text-lg group-hover:text-cyber-purple transition-colors">Senior Web Developer</h3>
+                      <span className="text-xs bg-cyber-purple/10 text-cyber-purple px-2 py-1 rounded-full dark:bg-cyber-purple/20 group-hover:bg-cyber-purple/30">2022 - Present</span>
                     </div>
                     <p className="text-sm text-foreground/70">
                       Developing modern web applications using React, TypeScript, and Next.js. 
@@ -134,11 +134,11 @@ const About = () => {
                   </div>
                 </ScrollAnimation>
                 
-                <ScrollAnimation type="fade-up" delay={300}>
-                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-green/20">
+                <ScrollAnimation type="scale-in" delay={300}>
+                  <div className="glass-card glass-card-hover p-5 sm:p-6 transition-all duration-300 hover:shadow-lg hover:border-cyber-green/40 hover:-translate-y-1 transform-gpu will-change-transform group">
                     <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-base sm:text-lg">Senior Security Engineer</h3>
-                      <span className="text-xs bg-cyber-green/10 text-cyber-green px-2 py-1 rounded-full dark:bg-cyber-green/20">2022 - 2024</span>
+                      <h3 className="font-bold text-base sm:text-lg group-hover:text-cyber-green transition-colors">Senior Security Engineer</h3>
+                      <span className="text-xs bg-cyber-green/10 text-cyber-green px-2 py-1 rounded-full dark:bg-cyber-green/20 group-hover:bg-cyber-green/30">2022 - 2024</span>
                     </div>
                     <p className="text-sm text-foreground/70">
                       Developed and implemented security controls for critical infrastructure, conducted penetration testing, 
@@ -147,11 +147,11 @@ const About = () => {
                   </div>
                 </ScrollAnimation>
                 
-                <ScrollAnimation type="fade-up" delay={400}>
-                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-yellow/20">
+                <ScrollAnimation type="tilt-in" delay={400}>
+                  <div className="glass-card glass-card-hover p-5 sm:p-6 transition-all duration-300 hover:shadow-lg hover:border-cyber-yellow/40 hover:-translate-y-1 transform-gpu will-change-transform group">
                     <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-base sm:text-lg">Full Stack Developer</h3>
-                      <span className="text-xs bg-cyber-yellow/10 text-cyber-yellow px-2 py-1 rounded-full dark:bg-cyber-yellow/20">2020 - 2022</span>
+                      <h3 className="font-bold text-base sm:text-lg group-hover:text-cyber-yellow transition-colors">Full Stack Developer</h3>
+                      <span className="text-xs bg-cyber-yellow/10 text-cyber-yellow px-2 py-1 rounded-full dark:bg-cyber-yellow/20 group-hover:bg-cyber-yellow/30">2020 - 2022</span>
                     </div>
                     <p className="text-sm text-foreground/70">
                       Built full-stack applications using modern JavaScript frameworks, Node.js, and various databases.
@@ -164,13 +164,13 @@ const About = () => {
             
             {activeTab === "certifications" && (
               <div className="space-y-6">
-                <ScrollAnimation type="fade-up" delay={100}>
-                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-blue/20 flex items-start gap-4">
-                    <div className="p-2 rounded-lg bg-cyber-blue/10 dark:bg-cyber-blue/20">
+                <ScrollAnimation type="scale-in" delay={100}>
+                  <div className="glass-card glass-card-hover p-5 sm:p-6 transition-all duration-300 hover:shadow-lg hover:border-cyber-blue/40 hover:-translate-y-1 transform-gpu will-change-transform group flex items-start gap-4">
+                    <div className="p-2 rounded-lg bg-cyber-blue/10 dark:bg-cyber-blue/20 group-hover:bg-cyber-blue/30 transition-transform group-hover:rotate-6">
                       <Shield className="w-5 h-5 text-cyber-blue" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-base sm:text-lg">Certified Information Systems Security Professional (CISSP)</h3>
+                      <h3 className="font-bold text-base sm:text-lg group-hover:text-cyber-blue transition-colors">Certified Information Systems Security Professional (CISSP)</h3>
                       <p className="text-sm text-foreground/70 mt-1">
                         Comprehensive certification covering security and risk management, asset security, security architecture, 
                         network security, identity management, and more.
@@ -179,13 +179,13 @@ const About = () => {
                   </div>
                 </ScrollAnimation>
                 
-                <ScrollAnimation type="fade-up" delay={200}>
-                  <div className="glass-card p-5 sm:p-6 hover:shadow-md transition-all duration-300 hover:border-cyber-green/20 flex items-start gap-4">
-                    <div className="p-2 rounded-lg bg-cyber-green/10 dark:bg-cyber-green/20">
+                <ScrollAnimation type="tilt-in" delay={200}>
+                  <div className="glass-card glass-card-hover p-5 sm:p-6 transition-all duration-300 hover:shadow-lg hover:border-cyber-green/40 hover:-translate-y-1 transform-gpu will-change-transform group flex items-start gap-4">
+                    <div className="p-2 rounded-lg bg-cyber-green/10 dark:bg-cyber-green/20 group-hover:bg-cyber-green/30 transition-transform group-hover:rotate-6">
                       <Award className="w-5 h-5 text-cyber-green" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-base sm:text-lg">Certified Ethical Hacker (CEH)</h3>
+                      <h3 className="font-bold text-base sm:text-lg group-hover:text-cyber-green transition-colors">Certified Ethical Hacker (CEH)</h3>
                       <p className="text-sm text-foreground/70 mt-1">
                         Advanced penetration testing certification demonstrating expertise in identifying and exploiting 
                         vulnerabilities in systems and networks.
@@ -194,6 +194,19 @@ const About = () => {
                   </div>
                 </ScrollAnimation>
                 
+                <ScrollAnimation type="scale-in" delay={300}>
+                  <div className="glass-card glass-card-hover p-5 sm:p-6 transition-all duration-300 hover:shadow-lg hover:border-cyber-red/40 hover:-translate-y-1 transform-gpu will-change-transform group flex items-start gap-4">
+                    <div className="p-2 rounded-lg bg-cyber-red/10 dark:bg-cyber-red/20 group-hover:bg-cyber-red/30 transition-transform group-hover:rotate-6">
+                      <BookOpen className="w-5 h-5 text-cyber-red" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-base sm:text-lg group-hover:text-cyber-red transition-colors">Offensive Security Certified Professional (OSCP)</h3>
+                      <p className="text-sm text-foreground/70 mt-1">
+                        Hands-on penetration testing certification that requires passing a practical 24-hour lab environment examination.
+                      </p>
+                    </div>
+                  </div>
+                </ScrollAnimation>
               </div>
             )}
           </ScrollAnimation>

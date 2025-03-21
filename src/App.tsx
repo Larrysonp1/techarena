@@ -13,7 +13,6 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
-const MessagesAdmin = lazy(() => import("./pages/admin/Messages"));
 
 // Create a loading component
 const LoadingScreen = () => (
@@ -29,15 +28,18 @@ const LoadingScreen = () => (
 
 // Create an error boundary component
 const ErrorFallback = () => (
-  <div className="min-h-screen flex items-center justify-center bg-background">
-    <div className="max-w-md p-8 rounded-lg border border-destructive/20 bg-destructive/5 text-center">
-      <h2 className="text-xl font-bold mb-4">Something went wrong</h2>
-      <p className="text-sm text-muted-foreground mb-6">
-        We encountered an error while loading the application. Please try refreshing the page.
+  <div className="min-h-screen flex items-center justify-center bg-background p-4">
+    <div className="max-w-md w-full bg-card border border-border rounded-xl p-6 shadow-sm text-center">
+      <div className="p-3 rounded-full bg-red-100 dark:bg-red-900/20 inline-block mb-4">
+        <Shield className="h-8 w-8 text-red-500" />
+      </div>
+      <h2 className="text-xl font-bold mb-2">Something went wrong</h2>
+      <p className="text-muted-foreground mb-4">
+        An unexpected error occurred. Please try refreshing the page or contact support if the issue persists.
       </p>
-      <button 
+      <button
         onClick={() => window.location.reload()}
-        className="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium"
+        className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90"
       >
         Refresh Page
       </button>
@@ -90,7 +92,6 @@ const App = () => {
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-of-service" element={<TermsOfService />} />
                 <Route path="/cookie-policy" element={<CookiePolicy />} />
-                <Route path="/admin/messages" element={<MessagesAdmin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

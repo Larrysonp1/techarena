@@ -1,6 +1,7 @@
 import { Lock, Shield, Server, Database, Eye, Bug, Code, BarChart } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { ScrollAnimation } from "@/components/ScrollAnimation";
 
 const projects = [
   {
@@ -19,7 +20,7 @@ const projects = [
     title: "Modern E-Commerce Platform",
     category: "Web Development",
     description: "Built a full-stack e-commerce solution with Next.js, featuring real-time inventory, secure payments, and an intuitive admin dashboard for product management.",
-    tags: ["Next.js", "Python", "React", "Node.js", "Supabase"],
+    tags: ["Next.js", "Python", "React", "Node.js", "PostgreSQL"],
     icon: <Code className="w-6 h-6" />,
     color: "bg-cyber-yellow",
     textColor: "text-cyber-yellow",
@@ -116,57 +117,59 @@ const Projects = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredProjects.map((project, index) => (
-            <div 
-              key={project.id} 
-              className="glass-panel group card-hover opacity-0"
-              style={{ 
-                animationName: 'fade-in-up', 
-                animationDuration: '0.7s', 
-                animationFillMode: 'forwards',
-                animationDelay: `${200 + index * 100}ms` 
-              }}
+            <ScrollAnimation 
+              key={project.id}
+              type={index % 2 === 0 ? "scale-in" : "tilt-in"}
+              delay={100 * (index % 3)}
             >
-              <div className="relative overflow-hidden rounded-t-xl h-40 sm:h-48">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
-                  <div className="mb-1">
-                    <span className={cn("text-xs font-medium text-white", project.textColor)}>
-                      {project.category}
-                    </span>
+              <div 
+                className="glass-panel glass-card-hover group transform-gpu will-change-transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+              >
+                <div className="relative overflow-hidden rounded-t-xl h-40 sm:h-48">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                  <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
+                    <div className="mb-1 transform transition-transform group-hover:translate-y-[-2px] duration-300">
+                      <span className={cn("text-xs font-medium text-white", project.textColor)}>
+                        {project.category}
+                      </span>
+                    </div>
+                    
+                    <h3 className="text-base sm:text-xl font-bold text-white group-hover:text-cyber-blue transition-all duration-300 group-hover:translate-y-[-2px]">
+                      {project.title}
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="p-4 sm:p-6">
+                  <div className={cn("p-2 sm:p-3 rounded-lg w-fit mb-4 sm:mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3", `${project.color}/10`)}>
+                    <div className={cn("text-white", project.textColor)}>
+                      {project.icon}
+                    </div>
                   </div>
                   
-                  <h3 className="text-base sm:text-xl font-bold text-white group-hover:text-cyber-blue transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                </div>
-              </div>
-
-              <div className="p-4 sm:p-6">
-                <div className={cn("p-2 sm:p-3 rounded-lg w-fit mb-4 sm:mb-5", `${project.color}/10`)}>
-                  <div className={cn("text-white", project.textColor)}>
-                    {project.icon}
+                  <p className="text-foreground/70 mb-4 text-xs sm:text-sm">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 sm:pt-4 border-t border-foreground/10">
+                    {project.tags.map((tag, i) => (
+                      <span 
+                        key={i} 
+                        className="cyber-pill bg-foreground/5 text-xs hover:bg-foreground/10"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
-                
-                <p className="text-foreground/70 mb-4 text-xs sm:text-sm">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 sm:pt-4 border-t border-foreground/10">
-                  {project.tags.map((tag, i) => (
-                    <span key={i} className="cyber-pill bg-foreground/5 text-xs">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
               </div>
-            </div>
+            </ScrollAnimation>
           ))}
         </div>
         
