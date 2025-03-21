@@ -1,12 +1,6 @@
-// Explicitly set that this is a Node.js serverless function for Vercel
-export const config = {
-  runtime: 'nodejs',
-  regions: ['iad1'], // Or whichever region you prefer
-};
-
-// Simplified handler for debugging on Vercel
-export default function handler(req, res) {
-  // Set CORS headers
+// Simple contact form handler for Vercel
+module.exports = (req, res) => {
+  // Enable CORS
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -26,16 +20,14 @@ export default function handler(req, res) {
   }
 
   try {
-    const body = req.body || {};
-    
-    // Return a simple success response for testing
-    return res.status(200).json({
-      success: true,
-      message: 'Contact form received',
-      received: body
+    // Just return success for testing
+    return res.status(200).json({ 
+      success: true, 
+      message: 'Contact form received successfully',
+      data: req.body
     });
   } catch (error) {
     console.error('Server error:', error);
-    return res.status(500).json({ error: 'Server error', message: error.message });
+    return res.status(500).json({ error: 'Server error' });
   }
-} 
+}; 
