@@ -22,4 +22,10 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Add build configuration for production
+  build: {
+    outDir: 'dist',
+    sourcemap: mode === 'production' ? false : true,
+    minify: mode === 'production' ? 'esbuild' : false,
+  }
 }));
