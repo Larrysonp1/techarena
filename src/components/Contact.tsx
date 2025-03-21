@@ -145,27 +145,7 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
       
-      // For debugging - log the raw response
-      const responseText = await response.text();
-      
-      let data;
-      try {
-        // Try to parse the response as JSON
-        data = JSON.parse(responseText);
-      } catch (parseError) {
-        console.error('[ERROR] Form submission failed', parseError);
-        console.error('Non-JSON response:', responseText);
-        
-        // Show error toast with the raw response for debugging
-        toast({
-          title: "Form submission error",
-          description: `The server returned an invalid response: ${responseText.substring(0, 100)}${responseText.length > 100 ? '...' : ''}`,
-          variant: "destructive",
-        });
-        
-        setIsSubmitting(false);
-        return;
-      }
+      const data = await response.json();
       
       // Reset submitting state
       setIsSubmitting(false);
