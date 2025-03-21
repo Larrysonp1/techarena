@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/api/contact", "destination": "/src/pages/api/contact" }
+    { "source": "/api/contact", "destination": "/api-vercel/contact-handler.js" }
   ]
 } 
